@@ -16,34 +16,34 @@ import java.util.TimerTask;
  *
  * @param <T> : Type of item in ExpiringSet
  */
-public class ExpiringSet<T> extends HashSet<T>{
+public class TimeBasedExpiringSet<T> extends HashSet<T>{
 
     private static final long serialVersionUID = 1L;
     
     @SuppressWarnings("unused") private final long expiryTimeInMilliseconds;
     private final Timer timer = new Timer(true);
 
-    public ExpiringSet(){
+    public TimeBasedExpiringSet(){
         this( 600000 );
     }
     
-	public ExpiringSet( Collection<? extends T> paramCollection ){
+	public TimeBasedExpiringSet( Collection<? extends T> paramCollection ){
         this( paramCollection, 600000 );
     }
     
-    public ExpiringSet( long expiryTimeInMilliseconds ){
+    public TimeBasedExpiringSet( long expiryTimeInMilliseconds ){
         super();
         this.expiryTimeInMilliseconds = expiryTimeInMilliseconds;
         timer.scheduleAtFixedRate(getExpiryThread( this ), 0, expiryTimeInMilliseconds);
     }
     
-    public ExpiringSet( Collection<? extends T> paramCollection, long expiryTimeInMilliseconds ){
+    public TimeBasedExpiringSet( Collection<? extends T> paramCollection, long expiryTimeInMilliseconds ){
         super( paramCollection );
         this.expiryTimeInMilliseconds = expiryTimeInMilliseconds;
         timer.scheduleAtFixedRate(getExpiryThread( this ), 0, expiryTimeInMilliseconds);
     }
     
-    private TimerTask getExpiryThread(ExpiringSet<T> expiringSet) {
+    private TimerTask getExpiryThread(TimeBasedExpiringSet<T> expiringSet) {
     	return new TimerTask() {
     		
     		@Override
