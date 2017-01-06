@@ -2,8 +2,11 @@ package com.javahacks.collection;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import org.apache.commons.lang.NotImplementedException;
 
 /**
  * A set that empties out after a certain time duration. 
@@ -43,7 +46,7 @@ public class TimeBasedExpiringSet<T> extends HashSet<T>{
         timer.scheduleAtFixedRate(getExpiryThread( this ), 0, expiryTimeInMilliseconds);
     }
     
-    private TimerTask getExpiryThread(TimeBasedExpiringSet<T> expiringSet) {
+    private TimerTask getExpiryThread(final TimeBasedExpiringSet<T> expiringSet) {
     	return new TimerTask() {
     		
     		@Override
@@ -52,4 +55,11 @@ public class TimeBasedExpiringSet<T> extends HashSet<T>{
     		}
     	};
 	}
+    
+    //------------------------------------ SET METHODS ------------------------------------//
+    
+    @Override
+    public Iterator<T> iterator() {
+        throw new NotImplementedException();
+    }
 }
