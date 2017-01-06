@@ -15,9 +15,4 @@ public class ExpiringSetTest {
 		}
 		Thread.sleep(1000000);
 	}
-//	
-//	@Test
-//	public void testBasic(){
-//		
-//	}
 }
